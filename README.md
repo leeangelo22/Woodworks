@@ -1,0 +1,2 @@
+# Woodworks
+ The purpose of this website is to allow potential customers to self-book, which means convenience, equity of access and a better customer experience. Manufacture high quality wood products that exceed customer’s expectations for quality, service and value. To provide a user-friendly interface system which considers user experience that can easily find P.R.S. Woodworks store and book online.
