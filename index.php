@@ -259,7 +259,7 @@
           <p>Book an Appointment</p>
         </div>
 
-        <form action="forms/book_appointment.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+        <form action="forms/book_appointment.php" method="post" role="form" class="php-email-form" id="booking-form" data-aos="fade-up" data-aos-delay="100">
           <div class="row">
             <div class="col-lg-4 col-md-6 form-group">
               <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
@@ -298,7 +298,7 @@
             </div>
           </div>
           <div class="form-group mt-3">
-            <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
             <div class="validate"></div>
           </div>
           <div class="mb-3">
@@ -307,9 +307,53 @@
             <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
           
           </div>
-          <div class="text-center"><button type="submit">Book Now</button></div>
+          <div class="text-center"><button type="submit" id="book-now-btn">Book Now</button></div>
         </form>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const bookingForm = document.getElementById('booking-form');
 
+            bookingForm.addEventListener('submit', function (event) {
+              event.preventDefault(); // Prevent the form from submitting
+
+              // Here, you can perform form validation if needed
+
+              // Simulating form submission success
+              const errorElement = document.querySelector('.error-message');
+              const sentMessageElement = document.querySelector('.sent-message');
+              const formInputs = bookingForm.querySelectorAll('input, textarea, select');
+
+              // Showing loading message
+              errorElement.style.display = 'none';
+              sentMessageElement.style.display = 'none';
+              document.querySelector('.loading').style.display = 'block';
+
+              // Simulating submission delay
+              setTimeout(function () {
+                // Hiding loading message
+                document.querySelector('.loading').style.display = 'none';
+
+                // Resetting form fields
+                formInputs.forEach(function (input) {
+                  input.value = '';
+                });
+
+                // Showing success message
+                sentMessageElement.style.display = 'block';
+
+                // Hiding success message after 2 seconds
+                setTimeout(function () {
+                  sentMessageElement.style.display = 'none';
+                }, 5000);
+              }, 2000);
+
+              // Hiding error message after 2 seconds
+              setTimeout(function () {
+                errorElement.style.display = 'none';
+              }, 2000);
+            });
+          });
+        </script>
       </div>
     </section><!-- End Book an appointment Section -->
 
@@ -518,7 +562,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" id="contact-form">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -531,15 +575,56 @@
                 <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="8" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="message" id="message" rows="8" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
+                <div class="loading" id="contact-loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="sent-message" id="contact-success-msg">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" id="send-message-btn">Send Message</button></div>
             </form>
+            <script>
+              document.addEventListener('DOMContentLoaded', function () {
+                const contactForm = document.getElementById('contact-form');
+
+                contactForm.addEventListener('submit', function (event) {
+                  event.preventDefault(); // Prevent the form from submitting
+
+                  // Here, you can perform form validation if needed
+
+                  // Simulating form submission success
+                  const errorElement = document.querySelector('.error-message');
+                  const sentMessageElement = document.querySelector('.sent-message#contact-success-msg');
+                  const loadingElement = document.querySelector('.loading#contact-loading');
+                  const formInputs = contactForm.querySelectorAll('input, textarea');
+
+                  // Showing loading message
+                  errorElement.style.display = 'none';
+                  sentMessageElement.style.display = 'none';
+                  loadingElement.style.display = 'block';
+
+                  // Simulating submission delay
+                  setTimeout(function () {
+                    // Hiding loading message
+                    loadingElement.style.display = 'none';
+
+                    // Resetting form fields
+                    formInputs.forEach(function (input) {
+                      input.value = '';
+                    });
+
+                    // Showing success message
+                    sentMessageElement.style.display = 'block';
+
+                    // Hiding success message after 2 seconds
+                    setTimeout(function () {
+                      sentMessageElement.style.display = 'none';
+                    }, 5000);
+                  }, 2000);
+                });
+              });
+            </script>
 
           </div>
 
@@ -603,6 +688,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  
+
 
 </body>
 

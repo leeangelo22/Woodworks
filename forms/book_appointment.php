@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect or display success message
-    header("Location: book_success.php");
-    exit();
+    // header("Location: book_success.php");
+    // exit();
 }
 ?>
 

@@ -71,14 +71,25 @@
       });
   }
   
-
-
+  // function displayError(thisForm, error) {
+  //   thisForm.querySelector('.loading').classList.remove('d-block');
+  //   let errorMessage = error instanceof Error ? error.message : error; // Extract error message
+  //   thisForm.querySelector('.error-message').innerHTML = errorMessage;
+  //   thisForm.querySelector('.error-message').classList.add('d-block');
+  // }
 
   function displayError(thisForm, error) {
     thisForm.querySelector('.loading').classList.remove('d-block');
     let errorMessage = error instanceof Error ? error.message : error; // Extract error message
-    thisForm.querySelector('.error-message').innerHTML = errorMessage;
-    thisForm.querySelector('.error-message').classList.add('d-block');
+    let errorMessageElement = thisForm.querySelector('.error-message');
+    errorMessageElement.innerHTML = errorMessage;
+    errorMessageElement.classList.add('d-block');
+  
+    // Hide error message after 2 seconds
+    setTimeout(function() {
+      errorMessageElement.classList.remove('d-block');
+    }, 0); // Adjust the duration as needed (in milliseconds)
   }
+  
 
 })();

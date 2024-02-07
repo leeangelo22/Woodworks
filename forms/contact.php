@@ -19,8 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect or display success message
-    header("Location: contact_success.php");
-    exit();
+    // header("Location: contact_success.php");
+    // exit();
 }
 ?>
 
