@@ -190,11 +190,11 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             <div class="add-service-form">
                 <h3>Add New Service</h3>
                 <form action="functions/add_service.php" method="post">
-                    <label for="service_name">Service Name:</label>
-                    <input type="text" id="service_name" name="service_name" required>
-                    <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" step="0.01" min="0" required>
-                    <button type="submit">Add Service</button>
+                    <!-- <label for="service_name">Service Name:</label> -->
+                    <input type="text" id="service_name" name="service_name" placeholder="Service Category Name" required>
+                    <!-- <label for="price">Price:</label> -->
+                    <input type="text" id="price" name="price" step="1" min="0" placeholder="Price" required>
+                    <button type="submit" id="add_service">Add Service</button>
                 </form>
             </div>
         </div>
@@ -267,11 +267,11 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             <div class="send-feedback-form">
                 <h3>Send Feedback to User</h3>
                 <form action="functions/send_feedback.php" method="post">
-                    <label for="recipient_email">Recipient Email:</label>
-                    <input type="email" id="recipient_email" name="recipient_email" required>
-                    <label for="feedback_message">Feedback Message:</label>
-                    <textarea id="feedback_message" name="feedback_message" required></textarea>
-                    <button type="submit">Send Feedback</button>
+                    <!-- <label for="recipient_email">Recipient Email:</label> -->
+                    <input type="text" id="recipient_email" name="recipient_email" placeholder="Recipient Email" required>
+                    <!-- <label for="feedback_message">Feedback Message:</label> -->
+                    <textarea id="form-control" name="feedback_message" placeholder="Feedback Message" required></textarea>
+                    <button type="submit" id="send_feedback">Send Feedback</button>
                 </form>
             </div>
           </div>

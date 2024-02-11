@@ -1,6 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-image: url("../img/hero-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background-color: #f4f4f4; */
 }
 
 .login-container, .dashboard-container {
@@ -87,32 +90,15 @@ a:hover {
     color: #cda45e; /* Change color on hover */
 }
 
-h2 {
-    font-size: 14px;
-    font-weight: 500;
-    padding: 0;
-    line-height: 1px;
-    margin: 0 0 5px 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #aaaaaa;
-    font-family: "Poppins", sans-serif;
-}
-
-.section-title p {
-    margin: 0;
-    margin: 0;
-    font-size: 36px;
-    font-weight: 700;
-    font-family: "Playfair Display", serif;
-    color: #cda45e;
+div.section-title {
+    margin-left: 100px;
 }
 
 /* appointments table */
 .appointments-table {
     overflow-x: auto;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .appointments-table table {
@@ -141,8 +127,8 @@ h2 {
 /* services table */
 .services-table {
     overflow-x: auto;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .services-table table {
@@ -168,11 +154,48 @@ h2 {
     background-color: #ddd;
 } */
 
+div.add-service-form {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+input#service_name {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    background: #0c0b09;
+    border-color: #625b4b;
+    color: white;
+    width: 200px;
+    margin-right: 10px;
+}
+
+input#price {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    background: #0c0b09;
+    border-color: #625b4b;
+    color: white;
+    width: 150px;
+    margin-right: 10px;    
+}
+
+button#add_service {
+        width: 100px;
+        padding: 10px;
+        background-color: #cda45e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
 /* feedback table */
 .feedback-table {
     overflow-x: auto;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 .feedback-table table {
@@ -197,3 +220,42 @@ h2 {
 /* .feedback-table tr:hover {
     background-color: #ddd;
 } */
+
+div.send-feedback-form {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+input#recipient_email {
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    background: #0c0b09;
+    border-color: #625b4b;
+    color: white;
+    width: 200px;
+    margin-right: 10px;
+}
+
+textarea#form-control {
+    min-height: calc(1.5em + 0.75rem + calc(var(--bs-border-width) * 2));
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 14px;
+    background: #0c0b09;
+    border-color: #625b4b;
+    color: white; 
+    width: 100%;  
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+button#send_feedback {
+        width: 125px;
+        padding: 10px;
+        background-color: #cda45e;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
