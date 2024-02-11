@@ -1,8 +1,8 @@
 <?php
-$host = "localhost"; // Host name
-$user = "root"; // Mysql username
-$password = ""; // Mysql password
-$database = "woodworks_db"; // Database name
+$host = "localhost";
+$user = "root";
+$password = "";
+$database = "woodworks_db";
 
 // Create connection
 $conn = mysqli_connect($host, $user, $password, $database);

@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.login-container, .dashboard-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2, .dashboard-container h2 {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+    width: 94.5%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #cda45e;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #cda45e;
+}
+
+a {
+    display: block;
+    text-align: center;
+    color: #cda45e;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Styles for admin dashboard navigation bar */
+.container-fluid {
+    display: flex;
+    align-items: center;
+}
+
+.navbar {
+    flex-grow: 1; /* Navbar will take up remaining space */
+    margin-left: 150px;
+}
+
+.nav-buttons {
+    margin-left: auto; /* Pushes nav-buttons to the right */
+    margin-right: 100px;
+}
+
+.logo a {
+    color: white; /* Change color of logo text */
+    text-decoration: none;
+    margin-left: 100px;
+    font-size: 28px;
+    /* margin: 0; */
+    padding: 0;
+    line-height: 1;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: "Poppins", sans-serif;
+}
+
+.logo a:hover {
+    color: #cda45e; /* Change color on hover */
+}
+
+/* appointments table */
+.appointments-table {
+    overflow-x: auto;
+}
+
+.appointments-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th, .appointments-table td {
+    padding: 8px;
+    border: 1px solid #a77929;
+}
+
+.appointments-table th {
+    background-color: #cda45e;
+    text-align: left;
+}
+
+.appointments-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* .appointments-table tr:hover {
+    background-color: #ddd;
+} */
+
+/* services table */
+.services-table {
+    overflow-x: auto;
+}
+
+.services-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.services-table th, .services-table td {
+    padding: 8px;
+    border: 1px solid #a77929;
+}
+
+.services-table th {
+    background-color: #cda45e;
+    text-align: left;
+}
+
+.services-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* .services-table tr:hover {
+    background-color: #ddd;
+} */

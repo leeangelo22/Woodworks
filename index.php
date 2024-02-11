@@ -25,7 +25,7 @@
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+  <!-- Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
   <style>
@@ -41,6 +41,16 @@
     input#date, input#time {
       color: #a49b89;
     }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-buttons a {
+      margin-left: 10px; /* Adjust margin as needed */
+    }
+
   </style>
 </head>
 
@@ -77,7 +87,11 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-      <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book an Appointment</a>
+
+      <div class="nav-buttons">
+        <a href="#book-a-table" class="book-a-table-btn scrollto d-none d-lg-flex">Book an Appointment</a>
+        <a href="admin_login.php" class="book-a-table-btn scrollto d-none d-lg-flex">Login</a>
+      </div>
 
     </div>
   </header><!-- End Header -->
@@ -138,110 +152,18 @@
 
     <!-- ======= Service Section ======= -->
     <section id="menu" class="menu section-bg">
-      <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
+            <div class="section-title">
+                <h2>Services</h2>
+                <p>Check Our Service Offers</p>
+            </div>
 
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Check Our Service Offers</p>
+            <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+                <?php include 'fetch_service_offers.php'; ?>
+            </div>
         </div>
-
-        <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-
-          <div class="col-lg-6 menu-item filter-starters">
-            
-            <div class="menu-content">
-              <a href="#">Door</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-              
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-           
-            <div class="menu-content">
-              <a href="#">Wardrobe</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-              
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-            
-            <div class="menu-content">
-              <a href="#">Hamba</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-              
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            
-            <div class="menu-content">
-              <a href="#">Jalousie</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-             
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            
-            <div class="menu-content">
-              <a href="#">Cabinet</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-            
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-starters">
-           
-            <div class="menu-content">
-              <a href="#">Bed Frame</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-             
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            
-            <div class="menu-content">
-              <a href="#">Table</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-            
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-salads">
-            
-            <div class="menu-content">
-              <a href="#">Chair</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-              
-            </div>
-          </div>
-
-          <div class="col-lg-6 menu-item filter-specialty">
-            
-            <div class="menu-content">
-              <a href="#">Book shelfs</a><span>₱</span>
-            </div>
-            <div class="menu-ingredients">
-              
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Menu Section -->
-
+    </section>
+    <!-- End Menu Section -->
 
           </div>
           <div class="swiper-pagination"></div>
