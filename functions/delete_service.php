@@ -3,14 +3,14 @@ session_start();
 
 // Check if admin is logged in
 if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== true) {
-    header("Location: admin_login.php");
+    header("Location: ../admin_login.php");
     exit();
 }
 
 // Include database connection
-require_once "db_connection.php";
+require_once "../db_connection.php";
 
-// Check if ID parameter is passed in the URL
+// Check if service ID is provided and not empty
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     // Prepare a delete statement
     $sql = "DELETE FROM service_offers WHERE id = ?";
@@ -24,21 +24,20 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
 
         // Attempt to execute the prepared statement
         if ($stmt->execute()) {
-            // Redirect to services page after successful deletion
-            header("Location: admin_dashboard.php#services");
+            // Service deleted successfully, redirect to services page
+            header("Location: ../admin_dashboard.php#services");
             exit();
         } else {
-            // Redirect with error message if deletion fails
-            header("Location: admin_dashboard.php#services?error=delete_failed");
-            exit();
+            // Redirect to error page if unable to delete service
+            echo "Oops! Something went wrong. Please try again later.";
         }
     }
 
     // Close statement
     $stmt->close();
 } else {
-    // Redirect to error page if ID parameter is not provided
-    header("Location: admin_dashboard.php#services?error=missing_id");
+    // Redirect to error page if service ID is not provided
+    header("Location: ../admin_dashboard.php");
     exit();
 }
 

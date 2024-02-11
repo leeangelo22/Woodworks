@@ -87,9 +87,32 @@ a:hover {
     color: #cda45e; /* Change color on hover */
 }
 
+h2 {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1px;
+    margin: 0 0 5px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #aaaaaa;
+    font-family: "Poppins", sans-serif;
+}
+
+.section-title p {
+    margin: 0;
+    margin: 0;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    color: #cda45e;
+}
+
 /* appointments table */
 .appointments-table {
     overflow-x: auto;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .appointments-table table {
@@ -118,6 +141,8 @@ a:hover {
 /* services table */
 .services-table {
     overflow-x: auto;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .services-table table {
@@ -140,5 +165,35 @@ a:hover {
 }
 
 /* .services-table tr:hover {
+    background-color: #ddd;
+} */
+
+/* feedback table */
+.feedback-table {
+    overflow-x: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.feedback-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.feedback-table th, .feedback-table td {
+    padding: 8px;
+    border: 1px solid #a77929;
+}
+
+.feedback-table th {
+    background-color: #cda45e;
+    text-align: left;
+}
+
+.feedback-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* .feedback-table tr:hover {
     background-color: #ddd;
 } */

@@ -3,12 +3,12 @@ session_start();
 
 // Check if admin is logged in
 if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== true) {
-    header("Location: admin_login.php");
+    header("Location: ../admin_login.php");
     exit();
 }
 
 // Include database connection
-require_once "db_connection.php";
+require_once "../db_connection.php";
 
 // Check if ID parameter is passed in the URL
 if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
@@ -35,7 +35,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
                 $price = $row["price"];
             } else {
                 // Redirect to error page if service ID does not exist
-                header("Location: admin_dashboard.php#services?error=service_not_found");
+                header("Location: ../admin_dashboard.php#services?error=service_not_found");
                 exit();
             }
         } else {
@@ -50,7 +50,7 @@ if (isset($_GET["id"]) && !empty(trim($_GET["id"]))) {
     $conn->close();
 } else {
     // Redirect to error page if ID parameter is not provided
-    header("Location: admin_dashboard.php#services?error=missing_id");
+    header("Location: ../admin_dashboard.php#services?error=missing_id");
     exit();
 }
 ?>

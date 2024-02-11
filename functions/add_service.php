@@ -10,7 +10,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Include database connection
-    require_once "db_connection.php";
+    require_once "../db_connection.php";
 
     // Prepare and bind parameters
     $sql = "INSERT INTO service_offers (service_name, price) VALUES (?, ?)";
@@ -23,11 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // Redirect to services page after successful addition
-        header("Location: admin_dashboard.php#services");
+        header("Location: ../admin_dashboard.php#services");
         exit();
     } else {
         // Redirect with error message if addition fails
-        header("Location: admin_dashboard.php#services?error=add_failed");
+        header("Location: ../admin_dashboard.php#services?error=add_failed");
         exit();
     }
 

@@ -28,10 +28,10 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
 
         <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-                <li><a class="nav-link scrollto active" href="#dashboard">Home</a></li>
-                <li><a class="nav-link scrollto" href="#appointments">Appointments</a></li>
+                <!-- <li><a class="nav-link scrollto active" href="#dashboard">Home</a></li> -->
+                <li><a class="nav-link scrollto active" href="#appointments">Appointments</a></li>
                 <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+                <!-- <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
                 <li><a class="nav-link scrollto" href="#contact">Feedback</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
@@ -114,7 +114,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
                                 echo "<td>" . $row['message'] . "</td>";
                                 echo "<td>" . $row['created_at'] . "</td>";
                                 echo "<td>" . $row['status'] . "</td>"; // Display status
-                                echo "<td><a href='edit_appointment.php?id=" . $row['id'] . "'>Edit</a> | <a href='delete_appointment.php?id=" . $row['id'] . "'>Delete</a></td>"; // Action links
+                                echo "<td><a href='functions/edit_appointment.php?id=" . $row['id'] . "'>Edit</a> | <a href='functions/delete_appointment.php?id=" . $row['id'] . "'>Delete</a></td>"; // Action links
                                 echo "</tr>";
                             }
                         } else {
@@ -175,7 +175,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
                                 echo "<td>" . $row['id'] . "</td>";
                                 echo "<td>" . $row['service_name'] . "</td>";
                                 echo "<td>P" . $row['price'] . "</td>";
-                                echo "<td><a href='edit_service.php?id=" . $row['id'] . "'>Edit</a> | <a href='delete_service.php?id=" . $row['id'] . "'>Delete</a></td>"; // Action links
+                                echo "<td><a href='functions/edit_service.php?id=" . $row['id'] . "'>Edit</a> | <a href='functions/delete_service.php?id=" . $row['id'] . "'>Delete</a></td>"; // Action links
                                 echo "</tr>";
                             }
                         } else {
@@ -189,7 +189,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
             <!-- Add Service Form -->
             <div class="add-service-form">
                 <h3>Add New Service</h3>
-                <form action="add_service.php" method="post">
+                <form action="functions/add_service.php" method="post">
                     <label for="service_name">Service Name:</label>
                     <input type="text" id="service_name" name="service_name" required>
                     <label for="price">Price:</label>
@@ -204,18 +204,78 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
     </section><!-- End Services Section -->
 
     <!-- ======= Feedback Section ======= -->
-        <section id="feedback" class="feedback">
+    <section id="feedback" class="feedback">
       <div class="container" data-aos="fade-up">
-
         <div class="row">
-          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+          <div class="col-lg-12 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <div class="section-title">
                 <h2>Feedback</h2>
                 <p>Customer's Feedback</p>
             </div>
+
+            <!-- View Feedback Table -->
+            <div class="feedback-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Subject</th>
+                            <th>Message</th>
+                            <th>Received At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Connect to database
+                        $conn = mysqli_connect("localhost", "root", "", "woodworks_db");
+
+                        // Check connection
+                        if (!$conn) {
+                            die("Connection failed: " . mysqli_connect_error());
+                        }
+
+                        // Fetch feedback data
+                        $sql = "SELECT * FROM contact";
+                        $result = mysqli_query($conn, $sql);
+
+                        if (mysqli_num_rows($result) > 0) {
+                            // Output data of each row
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['name'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
+                                echo "<td>" . $row['subject'] . "</td>";
+                                echo "<td>" . $row['message'] . "</td>";
+                                echo "<td>" . $row['created_at'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='6'>No feedback found</td></tr>";
+                        }
+
+                        // Close connection
+                        mysqli_close($conn);
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Send Feedback Form -->
+            <div class="send-feedback-form">
+                <h3>Send Feedback to User</h3>
+                <form action="functions/send_feedback.php" method="post">
+                    <label for="recipient_email">Recipient Email:</label>
+                    <input type="email" id="recipient_email" name="recipient_email" required>
+                    <label for="feedback_message">Feedback Message:</label>
+                    <textarea id="feedback_message" name="feedback_message" required></textarea>
+                    <button type="submit">Send Feedback</button>
+                </form>
+            </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Feedback Section -->
 
