@@ -204,18 +204,27 @@
               <div class="validate"></div>
             </div>
             <div class="col-lg-4 col-md-6 form-group mt-3">
-              <select class="form-control" name="service" id="service" data-msg="Please select service" required>
-                        <option value="">Select Service</option>
-                        <option value="Door">Door</option>
-                        <option value="Wardrobe">Wardrobe</option>
-                        <option value="Hamba">Hamba</option>
-                        <option value="Jalousie">Jalousie</option>
-                        <option value="Cabinet">Cabinet</option>
-                        <option value="Bed Frame">Bed Frame</option>
-                        <option value="Table">Table</option>
-                        <option value="Chair">Chair</option>
-                        <option value="Book shelfs">Book shelfs</option>
-                    </select>
+              <select name="service" id="service" class="form-control" required>
+                <option value="" selected disabled>Select Service</option>
+                <?php
+                // Include database connection
+                require_once "db_connection.php";
+
+                // Fetch services from service_offers table
+                $sql = "SELECT id, service_name FROM service_offers";
+                $result = $conn->query($sql);
+
+                // Check if there are any services
+                if ($result->num_rows > 0) {
+                  // Output data of each row
+                  while ($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row["service_name"] . "'>" . $row["service_name"] . "</option>";
+                  }
+                } else {
+                  echo "<option value=''>No services available</option>";
+                }
+                ?>
+              </select>
               <div class="validate"></div>
             </div>
           </div>
