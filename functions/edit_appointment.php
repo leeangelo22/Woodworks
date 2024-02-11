@@ -7,7 +7,7 @@ if (!isset($_SESSION["admin_logged_in"]) || $_SESSION["admin_logged_in"] !== tru
     exit();
 }
 
-// Check if service ID is set
+// Check if appointment ID is set
 if (!isset($_GET["id"]) || empty($_GET["id"])) {
     header("Location: ../admin_dashboard.php");
     exit();
@@ -16,27 +16,39 @@ if (!isset($_GET["id"]) || empty($_GET["id"])) {
 // Include database connection
 require_once "../db_connection.php";
 
-// Get service ID from URL parameter
-$service_id = $_GET["id"];
+// Get appointment ID from URL parameter
+$appointment_id = $_GET["id"];
 
-// Fetch service details
-$sql = "SELECT * FROM service_offers WHERE id = ?";
+// Fetch appointment details
+$sql = "SELECT * FROM book_appointment WHERE id = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $service_id);
+$stmt->bind_param("i", $appointment_id);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    // Redirect if service not found
+    // Redirect if appointment not found
     header("Location: ../admin_dashboard.php");
     exit();
 }
 
-// Fetch service details
-$service = $result->fetch_assoc();
+// Fetch appointment details
+$appointment = $result->fetch_assoc();
 
 // Close prepared statement
 $stmt->close();
+
+// Fetch services from the database
+$sql_services = "SELECT * FROM service_offers";
+$result_services = $conn->query($sql_services);
+$services = [];
+
+if ($result_services->num_rows > 0) {
+    // Store services in an array
+    while ($row = $result_services->fetch_assoc()) {
+        $services[] = $row;
+    }
+}
 
 // Close database connection
 $conn->close();
@@ -47,20 +59,41 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Service</title>
-    <link href="../assets/css/admin.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <title>Edit Appointment</title>
+    <link href="assets/css/admin.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h2>Edit Service</h2>
-        <form action="update_service.php" method="post">
-            <input type="hidden" name="service_id" value="<?php echo $service['id']; ?>">
-            <label for="service_name">Service Name:</label>
-            <input type="text" id="service_name" name="service_name" value="<?php echo $service['service_name']; ?>" required>
-            <label for="price">Price:</label>
-            <input type="number" id="price" name="price" step="0.01" min="0" value="<?php echo $service['price']; ?>" required>
-            <button type="submit">Update Service</button>
+        <h2>Edit Appointment</h2>
+        <form action="update_appointment.php" method="post">
+            <input type="hidden" name="appointment_id" value="<?php echo $appointment['id']; ?>">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $appointment['name']; ?>" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $appointment['email']; ?>" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" value="<?php echo $appointment['date']; ?>" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" value="<?php echo $appointment['time']; ?>" required>
+
+            <!-- Dropdown for Service -->
+            <label for="service">Service:</label>
+            <select id="service" name="service">
+                <?php foreach ($services as $service) : ?>
+                    <option value="<?php echo $service['service_name']; ?>" <?php if ($service['service_name'] == $appointment['service']) echo 'selected'; ?>><?php echo $service['service_name']; ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <!-- Dropdown for Status -->
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="Pending" <?php if ($appointment['status'] == 'Pending') echo 'selected'; ?>>Pending</option>
+                <option value="Reserved" <?php if ($appointment['status'] == 'Reserved') echo 'selected'; ?>>Reserved</option>
+                <option value="Approved" <?php if ($appointment['status'] == 'Approved') echo 'selected'; ?>>Approved</option>
+            </select>
+
+            <button type="submit">Update Appointment</button>
         </form>
     </div>
 </body>
